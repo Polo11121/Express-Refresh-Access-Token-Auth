@@ -52,15 +52,9 @@ app.use("/employees", require("./routes/api/employees"));
 app.use("/users", require("./routes/api/users"));
 
 // Handle 404 errors
+// Handle 404 errors
 app.all("*", (req, res) => {
-  res.status(404);
-  if (req.accepts("html")) {
-    res.sendFile(path.join(__dirname, "views", "404.html"));
-  } else if (req.accepts("json")) {
-    res.json({ error: "404 Not Found" });
-  } else {
-    res.type("txt").send("404 Not Found");
-  }
+  res.status(404).json({ error: "Custom 404 Error - This is a test" });
 });
 
 // Custom error handler middleware
